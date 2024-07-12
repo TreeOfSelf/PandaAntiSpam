@@ -3,7 +3,7 @@
 	"package": "me.sebastian420.PandaAntiSpam.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"CommandBlockMixin"
+		"ServerPlayNetworkHandlerMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

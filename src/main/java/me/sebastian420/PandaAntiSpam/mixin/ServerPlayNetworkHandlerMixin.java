@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ServerPlayNetworkHandler.class)
-public abstract class CommandBlockMixin {
+public abstract class ServerPlayNetworkHandlerMixin {
 
 	@Unique
 	public int messages = 0;
