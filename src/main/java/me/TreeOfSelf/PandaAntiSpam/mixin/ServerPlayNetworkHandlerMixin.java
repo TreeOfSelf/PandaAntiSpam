@@ -1,4 +1,4 @@
-package me.sebastian420.PandaAntiSpam.mixin;
+package me.TreeOfSelf.PandaAntiSpam.mixin;
 
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.network.packet.c2s.play.CommandExecutionC2SPacket;

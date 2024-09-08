@@ -1,4 +1,4 @@
-package me.sebastian420.PandaAntiSpam;
+package me.TreeOfSelf.PandaAntiSpam;
 
 import net.fabricmc.api.ModInitializer;
 

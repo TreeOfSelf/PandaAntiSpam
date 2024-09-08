@@ -1,9 +1,9 @@
 {
 	"required": true,
-	"package": "me.sebastian420.PandaAntiSpam.mixin",
+	"package": "me.TreeOfSelf.PandaAntiSpam.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ServerPlayNetworkHandlerMixin"
+     "ServerPlayNetworkHandlerMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

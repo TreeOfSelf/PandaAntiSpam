@@ -5,18 +5,18 @@
 	"name": "panda-anti-spam",
 	"description": "Shut people the fuck up",
 	"authors": [
-		"Sebastian420"
+		"TreeOfSelf"
 	],
 	"contact": {
-		"homepage": "",
-		"sources": ""
+		"homepage": "https://github.com/TreeOfSelf/PandaAntiSpam",
+		"sources": "https://github.com/TreeOfSelf/PandaAntiSpam"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/panda-anti-spam/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"me.sebastian420.PandaAntiSpam.PandaAntiSpam"
+          "me.TreeOfSelf.PandaAntiSpam.PandaAntiSpam"
 		]
 	},
 	"mixins": [
