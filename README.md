@@ -6,6 +6,10 @@
 
 A simple drop-in anti-spam. This will stop people from spamming private/public messages as well as /me commands. Simple, yet effective.
 
+## Try it out
+`hardcoreanarchy.gay`   (Deathban Anarchy)  
+`sky.hardcoreanarchy.gay`   (Skyblock Anarchy)
+
 ## Support
 
 [Support discord here!]( https://discord.gg/3tP3Tqu983)
