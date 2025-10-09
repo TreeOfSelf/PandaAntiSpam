@@ -1,5 +1,6 @@
 package me.TreeOfSelf.PandaAntiSpam.mixin;
 
+import me.TreeOfSelf.PandaAntiSpam.PandaAntiSpam;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.network.packet.c2s.play.CommandExecutionC2SPacket;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
@@ -25,13 +26,15 @@ public abstract class ServerPlayNetworkHandlerMixin {
 		ServerPlayerEntity player = ((ServerPlayNetworkHandler) (Object) this).player;
 		if (player.hasPermissionLevel(4)) return;
 
-		if (System.currentTimeMillis() - lastMessage > 60000) {
+		if (System.currentTimeMillis() - lastMessage > PandaAntiSpam.config.cooldownTime) {
 			lastMessage = System.currentTimeMillis();
 			messages = 0;
 		}
 
-		if (messages >= 13) {
-			player.sendMessage(Text.of("Messaging too often."));
+		if (messages >= PandaAntiSpam.config.messageLimit) {
+			if (!PandaAntiSpam.config.warningMessage.isEmpty()) {
+				player.sendMessage(Text.of(PandaAntiSpam.config.warningMessage));
+			}
 			ci.cancel();
 		} else messages++;
 
@@ -44,7 +47,7 @@ public abstract class ServerPlayNetworkHandlerMixin {
 		ServerPlayerEntity player = ((ServerPlayNetworkHandler) (Object) this).player;
 		if (player.hasPermissionLevel(4)) return;
 
-		if (System.currentTimeMillis() - lastMessage > 60000) {
+		if (System.currentTimeMillis() - lastMessage > PandaAntiSpam.config.cooldownTime) {
 			lastMessage = System.currentTimeMillis();
 			messages = 0;
 		}
@@ -54,8 +57,10 @@ public abstract class ServerPlayNetworkHandlerMixin {
 				command.startsWith("w") ||
 				command.startsWith("me")
 		) {
-			if (messages >= 13) {
-				player.sendMessage(Text.of("Messaging too often."));
+			if (messages >= PandaAntiSpam.config.messageLimit) {
+				if (!PandaAntiSpam.config.warningMessage.isEmpty()) {
+					player.sendMessage(Text.of(PandaAntiSpam.config.warningMessage));
+				}
 				ci.cancel();
 			} messages++;
 		}
