@@ -1,6 +1,8 @@
 package me.TreeOfSelf.PandaAntiSpam.mixin;
 
 import me.TreeOfSelf.PandaAntiSpam.PandaAntiSpam;
+import net.minecraft.command.permission.Permission;
+import net.minecraft.command.permission.PermissionLevel;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.network.packet.c2s.play.CommandExecutionC2SPacket;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
@@ -24,7 +26,7 @@ public abstract class ServerPlayNetworkHandlerMixin {
 	private void onGameMessage(ChatMessageC2SPacket packet, CallbackInfo ci) {
 
 		ServerPlayerEntity player = ((ServerPlayNetworkHandler) (Object) this).player;
-		if (player.hasPermissionLevel(4)) return;
+		if (player.getPermissions().hasPermission(new Permission.Level(PermissionLevel.ADMINS))) return;
 
 		if (System.currentTimeMillis() - lastMessage > PandaAntiSpam.config.cooldownTime) {
 			lastMessage = System.currentTimeMillis();
@@ -45,7 +47,7 @@ public abstract class ServerPlayNetworkHandlerMixin {
 
 		String command = packet.command();
 		ServerPlayerEntity player = ((ServerPlayNetworkHandler) (Object) this).player;
-		if (player.hasPermissionLevel(4)) return;
+		if (player.getPermissions().hasPermission(new Permission.Level(PermissionLevel.ADMINS))) return;
 
 		if (System.currentTimeMillis() - lastMessage > PandaAntiSpam.config.cooldownTime) {
 			lastMessage = System.currentTimeMillis();
