@@ -14,7 +14,9 @@ Under ./config/PandaAntiSpam.json
 {
   "cooldownTime": 60000, // Time window in milliseconds (60000 = 60 seconds)
   "messageLimit": 13, // Maximum messages allowed within the time window
-  "warningMessage": "Messaging too often." // Message sent to player when limit exceeded (use "" to disable)
+  "warningMessage": "Messaging too often.", // Message sent to player when limit exceeded (use "" to disable)
+  "filterAllCommands": false, // Count every command towards the limit, not just the ones below
+  "filteredCommands": ["tell", "msg", "w", "me", "teammsg", "tm"] // Commands that count towards the limit
 }
 ```
 

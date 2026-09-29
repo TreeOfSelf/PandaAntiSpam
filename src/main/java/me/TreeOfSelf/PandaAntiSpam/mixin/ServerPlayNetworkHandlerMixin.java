@@ -2,6 +2,7 @@ package me.TreeOfSelf.PandaAntiSpam.mixin;
 
 import me.TreeOfSelf.PandaAntiSpam.PandaAntiSpam;
 import net.minecraft.network.chat.Component;
+import java.util.Locale;
 import net.minecraft.network.protocol.game.ServerboundChatCommandPacket;
 import net.minecraft.network.protocol.game.ServerboundChatCommandSignedPacket;
 import net.minecraft.network.protocol.game.ServerboundChatPacket;
@@ -65,16 +66,30 @@ public abstract class ServerPlayNetworkHandlerMixin {
 			pandaAntiSpam$messages = 0;
 		}
 
-		if (command.startsWith("tell")
-				|| command.startsWith("msg")
-				|| command.startsWith("w")
-				|| command.startsWith("me")) {
+		if (pandaAntiSpam$isFiltered(command)) {
 			if (pandaAntiSpam$messages >= PandaAntiSpam.config.messageLimit) {
 				pandaAntiSpam$sendWarning(player);
 				ci.cancel();
 			}
 			pandaAntiSpam$messages++;
 		}
+	}
+
+	@Unique
+	private static boolean pandaAntiSpam$isFiltered(String command) {
+		if (PandaAntiSpam.config.filterAllCommands) {
+			return true;
+		}
+		String root = command.trim().split(" ", 2)[0].toLowerCase(Locale.ROOT);
+		if (root.startsWith("minecraft:")) {
+			root = root.substring("minecraft:".length());
+		}
+		for (String filtered : PandaAntiSpam.config.filteredCommands) {
+			if (root.equals(filtered.toLowerCase(Locale.ROOT))) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Unique
